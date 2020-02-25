@@ -65,6 +65,96 @@
 
     
     
+    <article id="post-正则表达式" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+    >正则表达式</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time datetime="2020-02-25T14:22:29.000Z" itemprop="datePublished">2020-02-25</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="正则是什么"><a href="#正则是什么" class="headerlink" title="正则是什么"></a>正则是什么</h2><p>在编写处理字符串的程序或网页时，经常会有查找符合某些复杂规则的字符串的需要。正则表达式就是用于描述这些规则的工具。换句话说  </p>
+<blockquote>
+<p><strong>正则表达式就是记录文本规则的代码。</strong>  </p>
+</blockquote>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>常用的元字符有<br>|代码|说明|<br>|—|:—-|<br>|.|匹配除换行符以外的任意字符|<br>|\w|匹配字母或数字或下划线或汉字|<br>|\s|匹配任意的空白符|<br>|\d|匹配数字|<br>|\b|匹配单词的开始或结束|<br>|^|匹配字符串的开始|<br>|$|匹配字符串的结束|</p>
+<h2 id="字符转义"><a href="#字符转义" class="headerlink" title="字符转义"></a>字符转义</h2><p>与其他语言一样，想查找元字符本身的话，需要用转义。  </p>
+<blockquote>
+<p>例如，查找<code>\</code>需要用<code>\\</code>  </p>
+</blockquote>
+<h2 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h2><p>常用的限定符有<br>|代码/语法|说明|<br>|———|:—-|<br>|*|重复零次或更多次|<br>|+|重复一次或更多次|<br>|?|重复一次或零次|<br>|{n}|重复n次|<br>|{n,}|重复n次或更多次|<br>|{n,m}|重复n次或m次|<br>例如</p>
+<blockquote>
+<p><code>Window\d+</code>可匹配<code>Windows7</code>，<code>windows10</code>  </p>
+</blockquote>
+<h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><p>匹配没有预定义元字符的字符集合<br>反括号<br><code>[0-9]</code>与<code>\d</code>一样  </p>
+<h2 id="分枝条件"><a href="#分枝条件" class="headerlink" title="分枝条件"></a>分枝条件</h2><p>用<code>|</code>把不同的规则分隔开<br><strong>注意</strong><br>顺序很重要  </p>
+<blockquote>
+<p><code>\d{5}-\d{4}|\d{5}</code>这个表达式用于匹配美国的邮政编码。美国邮编的规则是5位数字，或者用连字号间隔的9位数字。之所以要给出这个例子是因为它能说明一个问题：使用分枝条件时，要注意各个条件的顺序。如果你把它改成<code>\d{5}|\d{5}-\d{4}</code>的话，那么就只会匹配5位的邮编(以及9位邮编的前5位)。原因是匹配分枝条件时，将会从左到右地测试每个条件，如果满足了某个分枝的话，就不会去再管其它的条件了。  </p>
+</blockquote>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><p>用小括号来指定<strong>子表达式</strong>，后面跟限定<br>举例</p>
+<blockquote>
+<p><code>((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)</code>描述了一个IP地址。  </p>
+</blockquote>
+<h2 id="反义"><a href="#反义" class="headerlink" title="反义"></a>反义</h2><p>常用的反义代码有<br>|代码/语法|说明|<br>|———|:—-|<br>|\W|匹配不是字母或数字或下划线或汉字的字符|<br>|\S|匹配任意的空白符|<br>|\D|匹配数字|<br>|\B|匹配单词的开始或结束|<br>|[^x]|匹配除了x以外的任意字符|<br>|[^asdf]|匹配除了asdf以外的任意字符|</p>
+<h2 id="后向引用"><a href="#后向引用" class="headerlink" title="后向引用"></a>后向引用</h2><p>使用小括号指定一个子表达式后，<strong>匹配这个子表达式</strong>的文本(也就是此分组捕获的内容)可以在表达式或其它程序中作进一步的处理。<br>认情况下，每个分组会自动拥有一个<strong>组号</strong>，规则是：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。  </p>
+<ul>
+<li>分组0对应整个正则表达式  </li>
+<li>实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号  </li>
+</ul>
+<p><strong>后向引用</strong>用于重复搜索前面某个分组匹配的文本。例如，\1代表分组1匹配的文本   </p>
+<h3 id="可以指定组名"><a href="#可以指定组名" class="headerlink" title="可以指定组名"></a>可以指定组名</h3><p>要指定一个子表达式的组名，请使用这样的语法：<code>(?&lt;Word&gt;\w+)</code>(或者把尖括号换成’也行：<code>(?&#39;Word&#39;\w+)</code>),这样就把<code>\w+</code>的组名指定为Word了。要反向引用这个分组捕获的内容，你可以使用<code>\k&lt;Word&gt;</code>  </p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ck725nmm60000bwmjbpi84afy"
+        class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-走进证券" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -206,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/19/%E8%B5%B0%E8%BF%9B%E8%AF%81%E5%88%B8/" data-id="ck70femci000gdsmjgj8gholp"
+      <a data-url="http://yoursite.com/2020/02/19/%E8%B5%B0%E8%BF%9B%E8%AF%81%E5%88%B8/" data-id="ck725nmmm0008bwmjaif5744r"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%81%E5%88%B8/" rel="tag">证券</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BE%E7%A8%8B/" rel="tag">课程</a></li></ul>
@@ -279,7 +369,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/Linux%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87%E7%89%88man%E6%89%8B%E5%86%8C/" data-id="ck70fembg0001dsmjdm47as9j"
+      <a data-url="http://yoursite.com/2019/12/26/Linux%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87%E7%89%88man%E6%89%8B%E5%86%8C/" data-id="ck725nmmk0005bwmj24ebeb8o"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%AD%E6%96%87/" rel="tag">中文</a></li></ul>
@@ -338,14 +428,18 @@ source .bash_profile   </code></pre>
 
       
       <h3 id="1-各种题型的答题格式，要回答哪些内容"><a href="#1-各种题型的答题格式，要回答哪些内容" class="headerlink" title="1. 各种题型的答题格式，要回答哪些内容"></a>1. <strong>各种题型的答题格式，要回答哪些内容</strong></h3><ul>
-<li><a href="https://mooc1-2.chaoxing.com/work/selectWorkQuestionYiPiYue?courseId=204354751&classId=9115047&workId=5042822&workAnswerId=18596446&isdisplaytable=2&mooc=1&ut=s&enc=ebdc74fc4e9436ac823819205a07e58f&workSystem=0&cpi=90157439" target="_blank" rel="noopener">作业10找重复元素</a>  <blockquote>
+<li><a href="https://mooc1-2.chaoxing.com/work/selectWorkQuestionYiPiYue?courseId=204354751&classId=9115047&workId=5042822&workAnswerId=18596446&isdisplaytable=2&mooc=1&ut=s&enc=ebdc74fc4e9436ac823819205a07e58f&workSystem=0&cpi=90157439" target="_blank" rel="noopener">作业10找重复元素</a>  </li>
+</ul>
+<blockquote>
 <p>给定可能含有重复元素的n个数的数组A[0 .. n-1]。设计一个函数，检查是否存在重复元素。<br>(1) 定义函数原型。<br><code>函数的定义</code><br>(2)假设不允许使用额外的空间（可以使用少量的临时变量），并且算法时间复杂度要优于O(n2)，请给出算法的设计思想。<br><code>只写算法思想</code><br>(3)根据算法设计思想，给出伪代码描述的算法步骤，关键之处给出注释，并说明你所设计算法的时间复杂度。<br><code>按照要求，使用注释，时间复杂度要分析</code>  </p>
 </blockquote>
-</li>
-<li>今年(2019)使用新题型  <blockquote>
+<ul>
+<li>今年(2019)使用新题型  </li>
+</ul>
+<blockquote>
 <p>掌握答题方法，注意答题过程，注重方法分，给出题目要直到从哪里入手，如何展现出来，做题流程。  </p>
 </blockquote>
-<h3 id="2-考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆"><a href="#2-考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆" class="headerlink" title="2. 考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆"></a>2. <strong>考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆</strong></h3></li>
+<h3 id="2-考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆"><a href="#2-考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆" class="headerlink" title="2. 考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆"></a>2. <strong>考试时算法思想中，要用到一些书上学的算法，要把这些算法写进去吗，怎么把普通二叉树转化成最大值堆</strong></h3><ul>
 <li>经典的算法不用，可以直接使用相应名字函数来代替。</li>
 <li>普通二叉树不能转化成最大值堆。  <h3 id="3-考试时哪种问法对应需要写伪代码，思路分析，性能分析等"><a href="#3-考试时哪种问法对应需要写伪代码，思路分析，性能分析等" class="headerlink" title="3. 考试时哪种问法对应需要写伪代码，思路分析，性能分析等"></a>3. <strong>考试时哪种问法对应需要写伪代码，思路分析，性能分析等</strong></h3><blockquote>
 <p>算法设计题（无特殊要求），题目中明确告诉的  </p>
@@ -371,7 +465,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%A6%81%E7%82%B9/" data-id="ck70femcj000hdsmj4wegeb08"
+      <a data-url="http://yoursite.com/2019/12/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%A6%81%E7%82%B9/" data-id="ck725nmmo000abwmjdd7m10q8"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/" rel="tag">期末考试</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B9%96%E5%8D%97%E5%A4%A7%E5%AD%A6/" rel="tag">湖南大学</a></li></ul>
@@ -437,7 +531,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck70femc4000adsmjao2yd4bf"
+      <a data-url="http://yoursite.com/2019/12/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck725nmmi0003bwmj6z9g95bn"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li></ul>
@@ -510,7 +604,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/hello-world/" data-id="ck70fembj0002dsmj4zgddhne"
+      <a data-url="http://yoursite.com/2019/12/26/hello-world/" data-id="ck725nmmn0009bwmj783u4f3t"
         class="article-share-link">分享</a>
       
     </footer>
