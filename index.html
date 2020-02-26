@@ -231,13 +231,92 @@
 </ul>
 <p><strong>后向引用</strong>用于重复搜索前面某个分组匹配的文本。例如，\1代表分组1匹配的文本   </p>
 <h3 id="可以指定组名"><a href="#可以指定组名" class="headerlink" title="可以指定组名"></a>可以指定组名</h3><p>要指定一个子表达式的组名，请使用这样的语法：<code>(?&lt;Word&gt;\w+)</code>(或者把尖括号换成’也行：<code>(?&#39;Word&#39;\w+)</code>),这样就把<code>\w+</code>的组名指定为Word了。要反向引用这个分组捕获的内容，你可以使用<code>\k&lt;Word&gt;</code>  </p>
+<h3 id="常用分组语法"><a href="#常用分组语法" class="headerlink" title="常用分组语法"></a>常用分组语法</h3><table>
+   <tr>
+      <th>分类</td>
+      <th>代码/语法</td>
+      <th>说明</td>
+   </tr>
+   <tr>
+      <td rowspan="3">捕获</td>
+      <td>(exp)</td>
+      <td>匹配exp,并捕获文本到自动命名的组里</td>
+   </tr>
+   <tr>
+      <td>(?<name>exp)</td>
+      <td>匹配exp,并捕获文本到名称为name的组里，也可以写成(?'name'exp)</td>
+   </tr>
+   <tr>
+      <td>(?:exp)</td>
+      <td>匹配exp,不捕获匹配的文本，也不给此分组分配组号</td>
+   </tr>
+   <tr>
+      <td rowspan="4">零宽断言</td>
+      <td>(?=exp)</td>
+      <td>匹配exp前面的位置</td>
+   </tr>
+   <tr>
+      <td>(?<=exp)</td>
+      <td>匹配exp后面的位置</td>
+   </tr>
+   <tr>
+      <td>(?!exp)</td>
+      <td>匹配后面跟的不是exp的位置</td>
+   </tr>
+   <tr>
+      <td>(?<!exp)</td>
+      <td>匹配前面不是exp的位置</td>
+   </tr>
+   <tr>
+      <td>注释</td>
+      <td>(?#comment)</td>
+      <td>这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读</td>
+   </tr>
+</table>
 
+<h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><ul>
+<li>当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配<strong>尽可能多</strong>的字符。这被称为<strong>贪婪</strong>匹配。  </li>
+<li>有时，我们更需要<strong>懒惰</strong>匹配，也就是匹配尽可能少的字符。前面给出的限定符都可以被转化为懒惰匹配模式，只要在它后面加上一个问号<code>?</code>。<br>懒惰限定符  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">*?</td>
+<td>重复任意次，但尽可能少</td>
+</tr>
+<tr>
+<td align="left">+?</td>
+<td>重复一次或更多次，但尽可能少</td>
+</tr>
+<tr>
+<td align="left">??</td>
+<td>重复零次或一次，但尽可能少</td>
+</tr>
+<tr>
+<td align="left">{n,m}?</td>
+<td>重复n到m次，但尽可能少</td>
+</tr>
+<tr>
+<td align="left">{n,}?</td>
+<td>重复n次以上，但尽可能少</td>
+</tr>
+</tbody></table>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://deerchao.cn/tutorials/regex/regex.htm" target="_blank" rel="noopener">正则表达式30分钟入门教程</a>  </li>
+<li><a href="https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/regular-expressions" target="_blank" rel="noopener">.NET 正则表达式</a>  </li>
+</ul>
+<h2 id="持续更新"><a href="#持续更新" class="headerlink" title="持续更新"></a>持续更新</h2>
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ck725rtuv0002tgmj4f29dnaa"
+      <a data-url="http://yoursite.com/2020/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ck7304a700002hgmjcnnfdgsn"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
@@ -397,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/19/%E8%B5%B0%E8%BF%9B%E8%AF%81%E5%88%B8/" data-id="ck725rtvm000stgmj2o0l6v9c"
+      <a data-url="http://yoursite.com/2020/02/19/%E8%B5%B0%E8%BF%9B%E8%AF%81%E5%88%B8/" data-id="ck7304a7i000jhgmj8v8s5gac"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%81%E5%88%B8/" rel="tag">证券</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BE%E7%A8%8B/" rel="tag">课程</a></li></ul>
@@ -470,7 +549,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/Linux%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87%E7%89%88man%E6%89%8B%E5%86%8C/" data-id="ck725rtux0003tgmjbbxd6jdy"
+      <a data-url="http://yoursite.com/2019/12/26/Linux%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87%E7%89%88man%E6%89%8B%E5%86%8C/" data-id="ck7304a760007hgmjdtvr6ath"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%AD%E6%96%87/" rel="tag">中文</a></li></ul>
@@ -566,7 +645,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%A6%81%E7%82%B9/" data-id="ck725rtv10007tgmjav5b83i8"
+      <a data-url="http://yoursite.com/2019/12/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%A6%81%E7%82%B9/" data-id="ck7304a7w000qhgmj0h6t0c3n"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/" rel="tag">期末考试</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B9%96%E5%8D%97%E5%A4%A7%E5%AD%A6/" rel="tag">湖南大学</a></li></ul>
@@ -632,7 +711,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck725rtuz0005tgmj4xpl4zuv"
+      <a data-url="http://yoursite.com/2019/12/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck7304a730004hgmjcct07y0m"
         class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li></ul>
@@ -705,7 +784,7 @@ source .bash_profile   </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/hello-world/" data-id="ck725rtus0001tgmj82fyb8qb"
+      <a data-url="http://yoursite.com/2019/12/26/hello-world/" data-id="ck7304a6u0000hgmj8p6h681o"
         class="article-share-link">分享</a>
       
     </footer>
